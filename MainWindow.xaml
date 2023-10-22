@@ -1,0 +1,38 @@
+﻿<Window x:Class="P04WeatherForecastAPI.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="420" Width="760">
+
+
+    <DockPanel>
+        <StackPanel Width="150" DockPanel.Dock="Left">
+            <Label Content="City:" ></Label>
+            <TextBox x:Name="txtCity"></TextBox>
+            <Button x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}"></Button>
+            <ListBox x:Name="lbData" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}" DisplayMemberPath="LocalizedName" ></ListBox>
+        </StackPanel>
+        <StackPanel Width="300">
+            <Label HorizontalAlignment="Center" Content="Temperature for city:"></Label>
+            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="{Binding SelectedCity.LocalizedName}"></Label>
+            <Label  HorizontalAlignment="Center" Content="is:"></Label>
+            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="{Binding WeatherView.CurrentTemperature}"></Label>
+            <Label Content="Today's weather description:"/>
+            <Label x:Name="lblTodaysDesc" Content="{Binding TodayForecastView.text}" Height="50"/>
+            <Label Content="Yesterday's weather description:"/>
+            <Label x:Name="lblYesterdayDesc" Content="{Binding YesterdayForecastView.text}" Height="50"/>
+        </StackPanel>
+        <StackPanel>
+            <Label Content="Conditions within:"/>
+            <Label Content="next hour"/>
+            <Label x:Name="lblNextHourDesc" Content="{Binding NextHourView.iconPhrase}" Height="50"/>
+            <Label Content="next 12 h"/>
+            <Label x:Name="lblnext12hoursDesc" Content="{Binding Next12HourView.iconPhrase}" Height="50"/>
+            <Label Content="next 5 days"/>
+            <Label x:Name="lblNext5daysDesc" Content="{Binding Next5dayView.text}" Height="50"/>
+        </StackPanel>
+    </DockPanel>
+</Window>
